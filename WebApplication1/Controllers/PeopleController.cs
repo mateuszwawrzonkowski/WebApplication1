@@ -118,24 +118,6 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
-        public PartialViewResult GetPeopleSex(int? id, string selectedSex = "ALL")
-        {
-            IEnumerable<People> data = db.People;
-
-            if (selectedSex != "ALL")
-            {
-                data = db.People.Where(p => p.sex==selectedSex);
-
-            }
-            return PartialView(data);
-        }
-
-        //Filtrowanie
-        public ActionResult GetPeople(string selectedSex = "ALL")
-        {
-            return View((object)selectedSex);
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

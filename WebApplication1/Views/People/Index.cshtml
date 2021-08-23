@@ -1,35 +1,5 @@
-﻿@using WebApplication1.Models
-@model IEnumerable<WebApplication1.Models.People>
+﻿@model IEnumerable<WebApplication1.Models.People>
 
-@{
-    ViewBag.Title = "Index";
-    AjaxOptions ajax = new AjaxOptions
-    {
-        UpdateTargetId = "cos1",
-        LoadingElementId = "cos2",
-        LoadingElementDuration = 5000,
-        Confirm = "Realizujesz zadanie bar...",
-        Url = Url.Action("GetFruDate"),
-    };
-}
-
-<script>
-
-    function CallChangefunc(selectedSex) {
-         $.ajax({
-             url: "@Url.Action("GetPeople", "All")",
-             data: { selectedSex: selectedSex },
-            type: "Get",
-            dataType: "html",
-             success: function (data) {
-                 console.log(data);
-                //Whatever result you have got from your controller with html partial view replace with a specific html.
-                $("#myPartialView").html( data ); // HTML DOM replace
-            }
-        });
-    }
-
-</script>
 
 <h2>Index</h2>
 
@@ -37,9 +7,6 @@
         @Html.DropDownList("selectedSex", new SelectList(
             new string[] { "ALL", "K", "M" }))
         <button type="submit">Find</button>
-    </div>
-    <div id="myPartialView">
-        @{Html.RenderPartial("GetPeople", Model);}
     </div>
 
 <p>
